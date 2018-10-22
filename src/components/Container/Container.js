@@ -4,6 +4,10 @@ import Map from "../Map/Map";
 import { mapsAPI } from "../../projectFiles/projectData";
 
 export class Container extends Component {
+  setLocation(location) {
+    this.props.setLocation(location);
+  }
+
   render() {
     const { findMe } = this.props;
 
@@ -14,9 +18,10 @@ export class Container extends Component {
       <div className="container">
         <Map
           google={this.props.google}
-          centerAroundCurrentLocation={findMe}
+          findMe={findMe}
           findByAddress={this.props.findByAddress}
-          currentLocation={this.props.currentLocation}
+          getLocation={this.props.getLocation}
+          setLocation={location => this.setLocation(location)}
         />
       </div>
     );

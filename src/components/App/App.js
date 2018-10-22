@@ -6,16 +6,22 @@ import ControlPanel from "../ControlPanel/ControlPanel";
 import ResultComponent from "../ResultComponent/ResultComponent";
 
 class App extends Component {
-  state = {
-    findMe: false,
-    address: "",
-    currentLocation: {
-      lat: "",
-      lng: ""
-    }
-  };
-
+  constructor(props) {
+    super(props);
+    this.toggle = false;
+    this.state = {
+      findMe: false,
+      address: "",
+      location: {
+        lat: 19.4265068,
+        lng: -99.1768341
+      }
+    };
+  }
   //State modifiers form Map to Results
+  setLocation(location) {
+    this.setState({ location });
+  }
 
   //State modifiers from ControlPanel to MAP
   findMe = () => {
@@ -26,22 +32,25 @@ class App extends Component {
     this.setState({ address });
   };
 
+  show() {}
+
   render() {
-    console.log("findMe", this.state.findMe);
-    console.log("address", this.state.address);
     return (
       <div className="App">
         <Header />
-        <ControlPanel
-          findMe={this.findMe}
-          setAddress={address => this.setAddress(address)}
-        />
-        <Container
-          findMe={this.state.findMe}
-          findByAddress={this.state.address}
-          currentLocation={this.state.currentLocation}
-        />
-        <ResultComponent currentLocation={this.state.currentLocation} />
+        <div className="map_control">
+          <ControlPanel
+            findMe={this.findMe}
+            setAddress={address => this.setAddress(address)}
+          />
+          <Container
+            findMe={this.state.findMe}
+            findByAddress={this.state.address}
+            getLocation={this.state.location}
+            setLocation={location => this.setLocation(location)}
+          />
+        </div>
+        <ResultComponent currentLocation={this.state.location} />
       </div>
     );
   }

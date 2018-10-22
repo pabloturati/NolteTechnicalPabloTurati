@@ -1,0 +1,32 @@
+.control_panel {
+  width: 100vw;
+  margin: 0px 0;
+  background-color: rgb(239, 239, 244);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.control_panel > section {
+  margin: 20px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+input {
+  height: 50px;
+  font-size: 20px;
+}
+button {
+  height: 50px;
+  border: 1px solid black;
+}
+
+/* @media (min-width: 768px) {
+  .control_panel {
+    width: 100%;
+    align-items: flex-start;
+  }
+}*/

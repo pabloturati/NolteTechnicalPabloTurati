@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import "./ControlPanel.css";
 
 export default class ControlPanel extends Component {
   constructor(props) {
@@ -14,26 +15,31 @@ export default class ControlPanel extends Component {
   findAddress = event => {
     if (event.key === "Enter") {
       const address = event.target.value;
-      console.log("value is", address);
       this.props.setAddress(address);
     }
   };
 
   render() {
     return (
-      <div>
+      <div className="control_panel">
         <h2>Find venues!</h2>
-        <h3>Find venues by city or by Address</h3>
-        <input
-          type="text"
-          ref={this.addressInpRef}
-          placeholder="Address Finder"
-          onKeyPress={e => this.findAddress(e)}
-        />
-        <h3>Find venues close to you!</h3>
-        <button onClick={this.findMe} value="Find venues around me">
-          Find me!
-        </button>
+        <section>
+          <div className="byAddress">
+            <h3>Find venues by city or by Address</h3>
+            <input
+              type="text"
+              ref={this.addressInpRef}
+              placeholder="Address Finder"
+              onKeyPress={e => this.findAddress(e)}
+            />
+          </div>
+          <div className="byProximity">
+            <h3>Find venues close to you!</h3>
+            <button onClick={this.findMe} value="Find venues around me">
+              Find me!
+            </button>
+          </div>
+        </section>
       </div>
     );
   }
