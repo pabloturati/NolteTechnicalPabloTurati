@@ -1,16 +1,22 @@
 import React, { Component } from "react";
-import { baseURL } from "../../projectFiles/projectData";
-import { mapsAPI } from "../../projectFiles/projectData";
 import "./ResultComponent.css";
+import { baseURL } from "../../projectFiles/projectData";
 
 export default class ResultComponent extends Component {
   state = {
-    venues: [],
-    loading: true
+    //Result State
+    loading: true,
+    venues: []
   };
   componentWillMount() {
-    if (this.props.currentLocation) {
-      const { lat, lng } = this.props.currentLocation;
+    if (this.props.location) {
+      const { lat, lng } = this.props.location;
+      this.fetchResults(baseURL + `&v=20180323&ll=${lat},${lng}`);
+    }
+  }
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps != this.props) {
+      const { lat, lng } = this.props.location;
       this.fetchResults(baseURL + `&v=20180323&ll=${lat},${lng}`);
     }
   }
@@ -41,6 +47,9 @@ export default class ResultComponent extends Component {
         {/* {console.log(lat, lng)} */}
       </div>
     );
+  }
+  upVenues() {
+    // this.props.upVenues;
   }
 
   render() {

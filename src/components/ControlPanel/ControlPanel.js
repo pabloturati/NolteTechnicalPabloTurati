@@ -33,6 +33,7 @@ export default class ControlPanel extends Component {
               onKeyPress={e => this.findAddress(e)}
             />
           </div>
+          <span> - OR - </span>
           <div className="byProximity">
             <h3>Find venues close to you!</h3>
             <button onClick={this.findMe} value="Find venues around me">

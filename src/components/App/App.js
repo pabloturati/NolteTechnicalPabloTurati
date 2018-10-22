@@ -10,18 +10,37 @@ class App extends Component {
     super(props);
     this.toggle = false;
     this.state = {
-      findMe: false,
+      //Control Panel + Map state
       address: "",
+      findMe: false,
       location: {
         lat: 19.4265068,
         lng: -99.1768341
       }
     };
   }
-  //State modifiers form Map to Results
+  // componentDidMount() {
+  //   this.fetchResults(this.buildURL());
+  // }
+
+  // componentDidUpdate(){
+
+  // }
+
+  //State modifiers from Map to Results
   setLocation(location) {
     this.setState({ location });
   }
+
+  // fetchResults(url) {
+  //   fetch(url)
+  //     .then(response => response.json())
+  //     .then(res => {
+  //       const venues = res.response.groups[0].items;
+  //       this.setState({ venues, loading: false });
+  //     })
+  //     .catch(e => console.log(e));
+  // }
 
   //State modifiers from ControlPanel to MAP
   findMe = () => {
@@ -31,8 +50,6 @@ class App extends Component {
   setAddress = address => {
     this.setState({ address });
   };
-
-  show() {}
 
   render() {
     return (
@@ -50,7 +67,7 @@ class App extends Component {
             setLocation={location => this.setLocation(location)}
           />
         </div>
-        <ResultComponent currentLocation={this.state.location} />
+        <ResultComponent location={this.state.location} />
       </div>
     );
   }

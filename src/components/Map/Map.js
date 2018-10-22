@@ -32,10 +32,8 @@ export default class Map extends Component {
     if (navigator && navigator.geolocation) {
       console.log("going in");
       navigator.geolocation.getCurrentPosition(response => {
-        // console.log(response.coords);
-        // console.log(response.coords.latitude);
-        // console.log(response.coords.longitude);
-        this.setLocation(response.coords.latitude, response.coords.longitude);
+        const { latitude, longitude } = response.coords;
+        this.setLocation(latitude, longitude);
       });
     }
   }
