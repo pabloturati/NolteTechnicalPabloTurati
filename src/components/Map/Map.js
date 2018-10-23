@@ -10,7 +10,6 @@ export default class Map extends Component {
 
   componentDidMount() {
     this.loadMap();
-    this.drawMarker();
   }
 
   componentDidUpdate(prevProps) {
@@ -23,14 +22,22 @@ export default class Map extends Component {
     if (prevProps.findByAddress !== this.props.findByAddress) {
       this.geocodeAddress(this.props.findByAddress);
     }
-
     this.loadMap();
-    this.drawMarker();
+    if (this.props.venues !== []) {
+      this.markMap(this.props.venues);
+    }
+  }
+
+  markMap(markers) {
+    this.clearOverlays();
+    markers.forEach(marker => {
+      const { lat, lng } = marker.venue.location;
+      this.drawMarker(lat, lng, marker.venue.name);
+    });
   }
 
   findMe() {
     if (navigator && navigator.geolocation) {
-      console.log("going in");
       navigator.geolocation.getCurrentPosition(response => {
         const { latitude, longitude } = response.coords;
         this.setLocation(latitude, longitude);
@@ -64,7 +71,6 @@ export default class Map extends Component {
       const node = this.mapRef.current;
 
       let { zoom } = this.props;
-      // const { lat, lng } = this.state.currentLocation;
       const { lat, lng } = this.props.getLocation;
 
       const center = new maps.LatLng(lat, lng);
@@ -77,9 +83,6 @@ export default class Map extends Component {
         }
       );
       this.map = new maps.Map(node, mapConfig);
-
-      // console.log(this.map);
-
       this.map.addListener("dragend", e => {
         const lat = this.map.getCenter().lat();
         const lng = this.map.getCenter().lng();
@@ -88,34 +91,29 @@ export default class Map extends Component {
     }
   };
 
-  recenterMap() {
-    const { maps } = this.props.google;
-    const { lat, lng } = this.state.currentLocation;
-
-    if (this.map) {
-      let center = new maps.LatLng(lat, lng);
-      this.map.panTo(center);
-    }
-  }
-
   setLocation(lat, lng) {
     const location = { lat, lng };
     this.props.setLocation(location);
   }
 
-  drawMarker() {
-    this.clearOverlays();
+  drawMarker(lat, lng, title) {
     const { google } = this.props;
-    const { lat, lng } = this.props.getLocation;
     const location = new google.maps.LatLng(lat, lng);
     const marker = new google.maps.Marker({
       position: location,
       map: this.map,
-      title: "Got you!"
+      title: title
+    });
+
+    const infowindow = new google.maps.InfoWindow({
+      content: title
     });
     this.markersArray.push(marker);
-    marker.addListener("click", e => {
-      console.log(marker.getPosition().lat, marker.getPosition().lng);
+    marker.addListener("mouseover", e => {
+      infowindow.open(this.map, marker);
+    });
+    marker.addListener("mouseout", e => {
+      infowindow.close();
     });
   }
 
@@ -131,6 +129,7 @@ export default class Map extends Component {
   }
 
   render() {
+    console.log(this.props.venues);
     return (
       <div className="map" ref={this.mapRef}>
         Loading map...
@@ -142,15 +141,8 @@ export default class Map extends Component {
 Map.propTypes = {
   google: PropTypes.object,
   zoom: PropTypes.number
-  //initialCenter: PropTypes.object,
-  //  findByAddress: PropTypes.string
 };
 
 Map.defaultProps = {
-  zoom: 14
-  // Mexico City
-  // initialCenter: {
-  //   lat: 19.4265068,
-  //   lng: -99.1768341
-  // }
+  zoom: 16
 };

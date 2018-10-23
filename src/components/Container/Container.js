@@ -22,6 +22,7 @@ export class Container extends Component {
           findByAddress={this.props.findByAddress}
           getLocation={this.props.getLocation}
           setLocation={location => this.setLocation(location)}
+          venues={this.props.venues}
         />
       </div>
     );
