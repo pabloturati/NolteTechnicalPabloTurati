@@ -14,6 +14,7 @@ class App extends Component {
     super(props);
     this.toggle = false;
     this.state = {
+      toDashboard: false,
       resultsPerPage: 30,
       address: "",
       findMe: false,
@@ -48,7 +49,6 @@ class App extends Component {
   }
 
   setCount(count) {
-    console.log(count);
     this.setState({ resultsPerPage: count });
   }
 
@@ -102,7 +102,11 @@ class App extends Component {
               />
             )}
           />
-          <Route exact path="/details/:venueId" component={VenueDetails} />
+          <Route
+            exact
+            path="/details/:venueId"
+            component={props => <VenueDetails {...props} />}
+          />
         </Switch>
         <Footer />
       </div>

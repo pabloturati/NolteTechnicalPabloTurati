@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 // import Footer from "../Footer/Footer";
 import "./Social.css";
-
 import {
   FacebookShareButton,
   GooglePlusShareButton,
@@ -53,16 +52,18 @@ import {
 
 export default class Social extends Component {
   render() {
+    const { shareURL, pinImage, venueName } = this.props;
+    const icoSize = 50;
     return (
       <div className="social_container">
         <div>
           <FacebookShareButton
-            children={<FacebookIcon size={32} round={true} />}
-            url="sample.com"
-            quote="to be or not to be"
-            hashtag="#romace"
+            children={<FacebookIcon size={icoSize} round={true} />}
+            url={shareURL}
+            quote={venueName}
+            hashtag={`#${venueName}`}
           />
-          <FacebookShareCount url={"sample.com"}>
+          <FacebookShareCount url={shareURL}>
             {shareCount => (
               <span className="myShareCountWrapper">{shareCount}</span>
             )}
@@ -70,25 +71,25 @@ export default class Social extends Component {
         </div>
         <div>
           <GooglePlusShareButton
-            children={<GooglePlusIcon size={32} round={true} />}
-            url="sample.com"
+            children={<GooglePlusIcon size={icoSize} round={true} />}
+            url={shareURL}
           />
         </div>
         <div>
           <TwitterShareButton
-            children={<TwitterIcon size={32} round={true} />}
-            url="sample.com"
-            via="string"
-            hashtag="#romace"
+            children={<TwitterIcon size={icoSize} round={true} />}
+            url={shareURL}
+            via={venueName}
+            hashtag={`#${venueName}`}
           />
         </div>
         <div>
           <PinterestShareButton
-            children={<PinterestIcon size={32} round={true} />}
-            url="sample.com"
-            media="An absolute link to the image that will be pinned (string)"
+            children={<PinterestIcon size={icoSize} round={true} />}
+            url={shareURL}
+            media={pinImage}
           />
-          <PinterestShareCount url={"sample.com"}>
+          <PinterestShareCount url={shareURL}>
             {shareCount => (
               <span className="myShareCountWrapper">{shareCount}</span>
             )}
@@ -96,12 +97,12 @@ export default class Social extends Component {
         </div>
         <div>
           <LinkedinShareButton
-            children={<LinkedinIcon size={32} round={true} />}
-            url="sample.com"
-            title="string"
-            description="string"
+            children={<LinkedinIcon size={icoSize} round={true} />}
+            url={shareURL}
+            title={venueName}
+            description={`#${venueName}`}
           />
-          <LinkedinShareCount url={"sample.com"}>
+          <LinkedinShareCount url={shareURL}>
             {shareCount => (
               <span className="myShareCountWrapper">{shareCount}</span>
             )}

@@ -27,7 +27,7 @@ export default class VenueCard extends Component {
         let linkArr = [];
         const photoArr = r.response.photos.items;
         photoArr.forEach(photo => {
-          const link = this.joinFixes(photo.prefix, photo.suffix, "200", "200");
+          const link = this.joinFixes(photo.prefix, photo.suffix, "600", "600");
           linkArr.push(link);
         });
         this.setState({ linkArr, loading: false });
@@ -50,7 +50,12 @@ export default class VenueCard extends Component {
     const { linkArr, loading } = this.state;
 
     return (
-      <Link to={`/details/${id}`}>
+      <Link
+        to={{
+          pathname: `/details/${id}`,
+          state: this.state.linkArr
+        }}
+      >
         <div key={id} className="venue_item">
           {loading && !linkArr && <img src={genericImage} alt={name} />}
           {!loading &&

@@ -37,14 +37,16 @@
   border: 2px solid rgb(13, 54, 159);
   border-radius: 15px;
   font-size: 1em;
-  /* background-color: rgb(46, 229, 220); azul claro */
-  /* background-color: rgb(249, 216, 86); Amarillo */
-  /* background-color: rgb(13, 54, 159); */
+
   color: rgb(13, 54, 159);
   font-weight: bold;
   cursor: pointer;
 }
-
+.control_panel button:hover {
+  border: 2px solid white;
+  background-color: rgb(13, 54, 159);
+  color: white;
+}
 .control_panel span {
   font-size: 1em;
   color: rgb(13, 54, 159);

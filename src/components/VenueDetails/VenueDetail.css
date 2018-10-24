@@ -1,0 +1,43 @@
+section.venue_detail {
+  width: 90%;
+  margin: 10px auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.venue_detail h1 {
+  font-size: 30px;
+  padding: 10px;
+  color: rgb(13, 54, 159);
+}
+
+.venue_detail a {
+  color: white;
+  background-color: rgb(13, 54, 159);
+}
+
+.generalInfo * {
+  margin: 4px;
+}
+
+.externalLinks {
+  display: flex;
+  flex-direction: column;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.venue_photo {
+  margin: 5px;
+  width: 300px;
+}
+
+.social_container {
+  margin: 10px auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}

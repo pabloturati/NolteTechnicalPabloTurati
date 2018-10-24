@@ -45,7 +45,7 @@ export default class ControlPanel extends Component {
           <div className="amount" />
           <div>
             <Link to="/">
-              <button className="reset_button">Search Reset</button>
+              <button id="reset_btn">Search Reset</button>
             </Link>
           </div>
         </section>
