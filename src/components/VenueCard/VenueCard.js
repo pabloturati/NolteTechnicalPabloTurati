@@ -3,6 +3,8 @@ import "./VenueCard.css";
 import { genericImage } from "../../projectFiles/projectData";
 import { Link } from "react-router-dom";
 
+import { FSCred } from "../../projectFiles/projectData";
+
 export default class VenueCard extends Component {
   constructor(props) {
     super(props);
@@ -36,8 +38,9 @@ export default class VenueCard extends Component {
     return prefix + w + "x" + h + suffix;
   }
 
-  createPhotoURLRequest(id) {
-    return `https://api.foursquare.com/v2/venues/${id}/photos?4b43ef23f964a52067ee25e3&client_id=B4VB3FI4MYM4XOON5MGQ0QPAFPLGKITPJQG3OQ03KK0OGB2M&client_secret=31H00P5SBRDADK5OYMN0LBCIELAPTOZHKHDWFFE5LVT0OZG5&v=20180323`;
+  createPhotoURLRequest(venueId) {
+    const { Id, Sec } = FSCred;
+    return `https://api.foursquare.com/v2/venues/${venueId}/photos?client_id=${Id}&client_secret=${Sec}&v=20180323`;
   }
 
   render() {
@@ -55,9 +58,14 @@ export default class VenueCard extends Component {
           {!loading &&
             linkArr.length === 0 && <img src={genericImage} alt={name} />}
           <h3>{name}</h3>
-          <span>{formattedAddress[0]}</span>
-          <span>{formattedAddress[1]}</span>
-          <span>{formattedAddress[2]}</span>
+          <div className="card_address_box">
+            {formattedAddress.map((addressLine, i) => (
+              <span key={i}>
+                {addressLine}
+                <br />
+              </span>
+            ))}
+          </div>
         </div>
       </Link>
     );

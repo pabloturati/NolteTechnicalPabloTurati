@@ -1,10 +1,21 @@
 header {
   width: 100%;
   background-color: rgb(1, 19, 60);
+  padding: 10px 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 10px 0;
+  justify-content: center;
+}
+header h3 {
+  display: block;
+  width: 100px;
+  margin: 10px;
+  padding: 0;
+  padding-right: 30px;
+  padding-left: 20px;
+  font-size: 20px;
+  background-color: rgb(46, 229, 220);
 }
 
 header > img {
@@ -15,7 +26,6 @@ header > img {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 100%;
   margin-bottom: 10px;
 }
 .header_titles h2 {
@@ -27,6 +37,7 @@ header > img {
 
 @media (min-width: 768px) {
   header {
+    display: flex;
     flex-direction: row;
     justify-content: space-between;
   }
@@ -34,12 +45,15 @@ header > img {
     height: 50px;
     width: 50%;
   }
+  header h3 {
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+  }
   .header_titles {
     width: 20%;
     color: white;
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* background-color: gray; */
   }
 }

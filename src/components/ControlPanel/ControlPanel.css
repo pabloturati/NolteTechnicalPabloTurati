@@ -7,12 +7,15 @@
   align-items: center;
   justify-content: center;
 }
-.control_panel > h2 {
+.control_panel h3 {
+  font-size: 18px;
+}
+
+.control_panel h2 {
   width: 100%;
-  padding: 10px 0;
-  margin-bottom: 10px;
-  color: rgb(13, 54, 159);
-  background-color: rgb(46, 229, 220);
+  margin: 10px;
+  padding: 0;
+  font-size: 25px;
 }
 
 .control_panel > section {
@@ -28,19 +31,20 @@
   font-size: 1em;
 }
 .control_panel button {
-  width: 100px;
+  width: 130px;
   margin: 15px 0 0 0;
   height: 50px;
-  border: 4px solid rgb(46, 229, 220);
+  border: 2px solid rgb(13, 54, 159);
   border-radius: 15px;
   font-size: 1em;
   /* background-color: rgb(46, 229, 220); azul claro */
   /* background-color: rgb(249, 216, 86); Amarillo */
-  background-color: rgb(13, 54, 159);
-  color: white;
+  /* background-color: rgb(13, 54, 159); */
+  color: rgb(13, 54, 159);
   font-weight: bold;
   cursor: pointer;
 }
+
 .control_panel span {
   font-size: 1em;
   color: rgb(13, 54, 159);

@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import "./ControlPanel.css";
-import { Button } from "reactstrap";
 import { Link } from "react-router-dom";
 
 export default class ControlPanel extends Component {
@@ -25,9 +24,6 @@ export default class ControlPanel extends Component {
   render() {
     return (
       <div className="control_panel">
-        <Link to="/">
-          <h2>Find venues!</h2>
-        </Link>
         <section>
           <div className="byAddress">
             <h3>Find venues by city or by Address</h3>
@@ -49,7 +45,7 @@ export default class ControlPanel extends Component {
           <div className="amount" />
           <div>
             <Link to="/">
-              <Button color="primary">Reset</Button>{" "}
+              <button className="reset_button">Search Reset</button>
             </Link>
           </div>
         </section>
