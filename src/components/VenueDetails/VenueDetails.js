@@ -31,22 +31,21 @@ export default class VenueDetails extends Component {
   }
 
   render() {
-    const { loading } = this.state;
-    const { name, location, canonicalUrl, price } = this.state.details.venue;
+    const { loading, details } = this.state;
+    // const { name, location, canonicalUrl, price } = this.state.details.venue;
 
     return (
       <React.Fragment>
         {loading && <Loader />}
-        {!loading &&
-          details.venue && (
-            <div>
-              <h1>{details.name}</h1>
-              {/* <h2>{details.location}</h2>
+        {!loading && (
+          <div>
+            {/* <h1>{details.name}</h1> */}
+            {/* <h2>{details.location}</h2>
               <span>{details.cannonicalURL}</span>
               <span>{details.price.tier}</span> */}
-              <Social />
-            </div>
-          )}
+            <Social />
+          </div>
+        )}
       </React.Fragment>
     );
   }
