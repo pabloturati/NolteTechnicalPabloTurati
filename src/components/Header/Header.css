@@ -16,9 +16,15 @@ header h3 {
   padding-left: 20px;
   font-size: 20px;
   background-color: rgb(46, 229, 220);
+  animation-name: attention;
+  animation-duration: 4s;
 }
 header h3:hover {
   background-color: rgb(239, 239, 244);
+}
+
+header > div > div {
+  display: flex;
 }
 
 header > img {
@@ -38,6 +44,15 @@ header > img {
   height: 100%;
 }
 
+@keyframes attention {
+  from {
+    background-color: rgb(249, 216, 86);
+  }
+  to {
+    background-color: rgb(46, 229, 220);
+  }
+}
+
 @media (min-width: 768px) {
   header {
     display: flex;
@@ -51,6 +66,8 @@ header > img {
   header h3 {
     border-top-left-radius: 15px;
     border-bottom-left-radius: 15px;
+    animation-name: attention;
+    animation-duration: 4s;
   }
   .header_titles {
     width: 20%;

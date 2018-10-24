@@ -4,6 +4,7 @@ section.venue_detail {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  font-size: 20px;
 }
 .venue_detail h1 {
   font-size: 30px;
@@ -11,9 +12,24 @@ section.venue_detail {
   color: rgb(13, 54, 159);
 }
 
-.venue_detail a {
-  color: white;
-  background-color: rgb(13, 54, 159);
+.detail_address_box {
+  padding: 20px;
+}
+
+.detail_address_box * {
+  font-size: 25px;
+}
+
+.generalInfo p {
+  font-size: 25px;
+  margin: 15px;
+}
+
+.externalLinks {
+  /* color: white; */
+  font-size: 25px;
+  color: rgb(13, 54, 159);
+  margin: 10px;
 }
 
 .generalInfo * {
@@ -35,9 +51,35 @@ section.venue_detail {
 }
 
 .social_container {
-  margin: 10px auto;
+  margin: 20px auto;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   flex-wrap: wrap;
+}
+.popularDetails {
+  margin: 10px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.venueStatus {
+  padding: 10px;
+  font-weight: bold;
+}
+
+.isClosed {
+  background-color: gray;
+  color: white;
+}
+.isOpen {
+  background-color: green;
+  color: white;
+}
+.dailyHours {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 }

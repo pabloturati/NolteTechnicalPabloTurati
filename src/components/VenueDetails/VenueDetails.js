@@ -45,7 +45,6 @@ export default class VenueDetails extends Component {
 
   render() {
     const { loading, details } = this.state;
-    console.log(details);
 
     //Pin Image
     let pinImage;
@@ -99,15 +98,57 @@ export default class VenueDetails extends Component {
                 </div>
                 <div className="externalLinks">
                   <span className="bold">External links</span>
-                  <a href={details.venue.canonicalUrl} target="_blank">
+                  <a
+                    href={details.venue.canonicalUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     Visit Foursquare Site
                   </a>
+                  {details.venue.url && (
+                    <a
+                      href={details.venue.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Visit the venue's website
+                    </a>
+                  )}
                 </div>{" "}
                 {details.venue.price && (
                   <div>
                     {details.venue.price.currency} {}
                     <span className="bold">Price Tier:</span>{" "}
                     {details.venue.price.tier} - {details.venue.price.message}
+                  </div>
+                )}
+                {
+                  <div className="popularDetails">
+                    {!details.venue.popular.isOpen &&
+                      details.venue.popular.isOpen !== null && (
+                        <span className="venueStatus isClosed">
+                          {" "}
+                          THIS VENUE IS CURRENTLY CLOSED{" "}
+                        </span>
+                      )}
+                    {details.venue.popular.isOpen &&
+                      details.venue.popular.isOpen !== null && (
+                        <span className="venueStatus isOpen">
+                          {" "}
+                          THIS VENUE IS CURRENTLY OPEN{" "}
+                        </span>
+                      )}
+                  </div>
+                }
+                {details.venue.popular.timeframes.length > 0 && (
+                  <div className="dailyHours">
+                    <h3>Venue Hours</h3>
+                    {details.venue.popular.timeframes.length > 0 &&
+                      details.venue.popular.timeframes.map((e, index) => (
+                        <div key={index} className="dayOpen">
+                          {e.days} {e.open.map(s => s.renderedTime + " ")}
+                        </div>
+                      ))}
                   </div>
                 )}
               </div>
