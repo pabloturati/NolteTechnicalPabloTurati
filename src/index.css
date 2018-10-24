@@ -20,3 +20,13 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+a,
+link {
+  text-decoration: none;
+}
+
+a:hover,
+link {
+  text-decoration: none;
+}

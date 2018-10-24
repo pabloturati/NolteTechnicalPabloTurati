@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import Loader from "../Loader/Loader";
 
 export default class Map extends Component {
   constructor(props) {
@@ -124,15 +125,12 @@ export default class Map extends Component {
     this.markersArray.length = 0;
   }
 
-  handleMarkerClick(e) {
-    console.log(e);
-  }
-
   render() {
-    console.log(this.props.venues);
     return (
       <div className="map" ref={this.mapRef}>
-        Loading map...
+        <div>
+          <Loader />
+        </div>
       </div>
     );
   }

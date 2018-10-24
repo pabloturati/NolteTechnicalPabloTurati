@@ -6,29 +6,26 @@ import ControlPanel from "../ControlPanel/ControlPanel";
 import ResultComponent from "../ResultComponent/ResultComponent";
 import { baseURL } from "../../projectFiles/projectData";
 import Footer from "../../components/Footer";
+import { Switch, Route } from "react-router-dom";
+import VenueDetails from "../VenueDetails/VenueDetails";
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.toggle = false;
     this.state = {
+      resultsPerPage: 30,
       address: "",
       findMe: false,
       location: {
-        lat: 0,
-        lng: 0
+        lat: 19.4265068,
+        lng: -99.1768341
       },
       venues: [],
       loading: true
     };
   }
   componentDidMount() {
-    this.setState({
-      location: {
-        lat: 19.4265068,
-        lng: -99.1768341
-      }
-    });
     const url = this.buildURL();
     this.fetchVenues(url);
   }
@@ -41,12 +38,18 @@ class App extends Component {
 
   buildURL() {
     const { lat, lng } = this.state.location;
-    return baseURL + `&limit=50&v=20180323&ll=${lat},${lng}`;
+    const { resultsPerPage } = this.state;
+    return baseURL + `&limit=${resultsPerPage}&v=20180323&ll=${lat},${lng}`;
   }
 
   //State modifiers from Map to Results
   setLocation(location) {
     this.setState({ location });
+  }
+
+  setCount(count) {
+    console.log(count);
+    this.setState({ resultsPerPage: count });
   }
 
   fetchVenues(url) {
@@ -76,6 +79,7 @@ class App extends Component {
           <ControlPanel
             findMe={this.findMe}
             setAddress={address => this.setAddress(address)}
+            count={count => this.setCount(count)}
           />
           <Container
             findMe={this.state.findMe}
@@ -85,11 +89,21 @@ class App extends Component {
             venues={this.state.venues}
           />
         </div>
-        <ResultComponent
-          location={this.state.location}
-          loading={this.state.loading}
-          venues={this.state.venues}
-        />
+        <Switch>
+          <Route
+            exact
+            path="/"
+            component={props => (
+              <ResultComponent
+                location={this.state.location}
+                loading={this.state.loading}
+                venues={this.state.venues}
+                {...props}
+              />
+            )}
+          />
+          <Route exact path="/details/:venueId" component={VenueDetails} />
+        </Switch>
         <Footer />
       </div>
     );
